@@ -22,11 +22,6 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
 
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    - sys-img-x86-android-27
-    - sys-img-armeabi-v7a-android-27
-
 notifications:
   email: false
 
@@ -35,10 +30,10 @@ before_cache:
 
 # cache between builds
 cache:
-  directories:
-  - $HOME/.m2
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
+  directories:      #Cache all dirs under .gradle folder
+    - $HOME/.gradle/daemon      #Cache daemon logs
+    - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
+    - $HOME/.gradle/wrapper     #Cache the gradle
 
 install:
   # Check install section: http://docs.travis-ci.com/user/build-configuration/#install
